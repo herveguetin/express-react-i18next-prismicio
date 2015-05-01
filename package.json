@@ -1,0 +1,10 @@
+{
+  "name": "Blog",
+  "version": "0.1.0",
+  "description": "Hervé Guétin's blog",
+  "main": "index.js",
+  "author": "Hervé Guétin",
+  "dependencies": {
+    "express": "^4.12.3"
+  }
+}
