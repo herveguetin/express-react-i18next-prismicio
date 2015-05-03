@@ -26,8 +26,8 @@ i18n.init({
  */
 var React = require('react');
 
-// Create a webpack require context with all js files in ./app//react-components
-var reactComponents = require.context('./app/react-components', true, /.js/);
+// Create a webpack require context with all js files in ./app/react
+var reactComponents = require.context('./app/react', true, /.js/);
 
 // Loop on reactComponents.keys() (all required files)
 _.forEach(reactComponents.keys(), function(file) {

@@ -17,7 +17,7 @@ var React = require('react');
 
 // Create React component
 var make = function(componentConfig) {
-    var component = require('../react-components/' + componentConfig.require);
+    var component = require('../react/' + componentConfig.require);
     var reactComponent = React.createFactory(component.component);
     reactComponent = {
         id: component.id,
