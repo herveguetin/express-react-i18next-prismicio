@@ -7,20 +7,11 @@
  * @copyright Copyright (c) 2015 Hervé Guétin (http://www.herveguetin.com)
  */
 
-require("node-jsx").install({
-    harmony: true,
-    extension: ".js"
-});
+var Controller = require('./core.server.controller');
 
-var React = require('react'),
-    Header = React.createFactory(require('../views/app'));
+exports.render = function (req, res) {
 
-exports.render = function(req, res) {
-
-    var header = React.renderToString(Header());
-
-    res.render('index', {
-        title: 'Hello World view',
-        header: header
+    Controller.render(req, res, 'index', {
+        title: 'Hello World view'
     });
 };

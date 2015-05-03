@@ -9,22 +9,17 @@
 
 var React = require('react');
 
-// Header component
-var Header = React.createClass({
-
-    componentDidMount: function() {
-        console.log('mountent');
-    },
+// Footer component
+var Footer = React.createClass({
 
     render: function() {
         return (
-            <div>Header</div>
+            <div>Footer</div>
         )
     }
 });
 
-module.exports = Header;
-
-if (typeof window !== "undefined") {
-    React.render(<Header/>, document.getElementById('header'));
-}
+module.exports = {
+    id: 'footer',
+    component: Footer
+};

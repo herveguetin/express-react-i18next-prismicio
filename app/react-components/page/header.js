@@ -7,15 +7,19 @@
  * @copyright Copyright (c) 2015 Hervé Guétin (http://www.herveguetin.com)
  */
 
-module.exports = {
-    entry: ['./app/views/app.client.js'],
-    output: {
-        path: './public/js',
-        filename: 'app.min.js'
-    },
-    module: {
-        loaders: [
-            { test: /\.js$/, loader: 'jsx-loader' }
-        ]
+var React = require('react');
+
+// Header component
+var Header = React.createClass({
+
+    render: function() {
+        return (
+            <div>Header</div>
+        )
     }
+});
+
+module.exports = {
+    id: 'header',
+    component: Header
 };

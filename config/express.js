@@ -8,7 +8,8 @@
  */
 
 var express = require('express'),
-    compress = require('compression')
+    compress = require('compression'),
+    exphbs = require('express-handlebars')
 ;
 
 module.exports = function() {
@@ -24,7 +25,13 @@ module.exports = function() {
 
     // Setup views rendering
     app.set('views', './app/views');
-    app.set('view engine', 'ejs');
+    app.engine('.hbs', exphbs({
+        layoutsDir: './app/views/layouts/',
+        partialsDir: './app/views/partials/',
+        defaultLayout: '1-column',
+        extname: '.hbs'})
+    );
+    app.set('view engine', '.hbs');
 
     // Setup static resources
     // CAUTION: always after routes
