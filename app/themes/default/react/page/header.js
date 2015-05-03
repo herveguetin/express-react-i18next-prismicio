@@ -7,17 +7,19 @@
  * @copyright Copyright (c) 2015 Hervé Guétin (http://www.herveguetin.com)
  */
 
-var theme = require('./config/config').theme;
+var React = require('react');
+
+// Header component
+var Header = React.createClass({
+
+    render: function() {
+        return (
+            <a className="navbar-brand" href="#">{this.props.__('app.name')}</a>
+        )
+    }
+});
 
 module.exports = {
-    entry: ['./client.js'],
-    output: {
-        path: './public/' + theme + '/js',
-        filename: 'app.min.js'
-    },
-    module: {
-        loaders: [
-            { test: /\.js$/, loader: 'jsx-loader' }
-        ]
-    }
+    id: 'header',
+    component: Header
 };

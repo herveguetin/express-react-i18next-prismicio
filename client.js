@@ -7,13 +7,14 @@
  * @copyright Copyright (c) 2015 Hervé Guétin (http://www.herveguetin.com)
  */
 
-var _ = require('lodash');
+var theme = require('./config/config').theme,
+    _ = require('lodash');
 
 /**
  * Init translations
  */
 var i18n = require('i18next-client'),
-    resBundle = require('i18next-resource-store-loader!./app/locales/index.js');
+    resBundle = require('i18next-resource-store-loader!./app/themes/' + theme + '/locales/index.js');
 ;
 
 i18n.init({
@@ -27,10 +28,15 @@ i18n.init({
 var React = require('react');
 
 // Create a webpack require context with all js files in ./app/react
-var reactComponents = require.context('./app/react', true, /.js/);
+var reactComponents = require.context('./app/themes', true, /\/react\/.*\.js$/);
 
 // Loop on reactComponents.keys() (all required files)
 _.forEach(reactComponents.keys(), function(file) {
+
+    // If file is not in theme, get out
+    if (!(_.startsWith(file, './' + theme + '/'))) {
+        return;
+    }
 
     // Extract exported module from context
     var component = reactComponents(file);

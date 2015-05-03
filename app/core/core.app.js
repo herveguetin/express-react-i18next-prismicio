@@ -7,7 +7,4 @@
  * @copyright Copyright (c) 2015 Hervé Guétin (http://www.herveguetin.com)
  */
 
-// Define environment
-var env = process.env.NODE_ENV || 'development';
-
-module.exports = require('./env/' + env + '.js');
+module.exports = require('../../config/express')();

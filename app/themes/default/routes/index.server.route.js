@@ -7,7 +7,15 @@
  * @copyright Copyright (c) 2015 Hervé Guétin (http://www.herveguetin.com)
  */
 
-// Define environment
-var env = process.env.NODE_ENV || 'development';
+var express = require('express');
 
-module.exports = require('./env/' + env + '.js');
+ module.exports = function(app) {
+
+     var router = express.Router();
+
+     var index = require('../controllers/index.server.controller');
+     router.get('/', index.render);
+
+     // Apply the routes to our application
+     app.use('/', router);
+ };
