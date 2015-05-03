@@ -7,15 +7,19 @@
  * @copyright Copyright (c) 2015 Hervé Guétin (http://www.herveguetin.com)
  */
 
-module.exports = {
-    entry: ['./client.js'],
-    output: {
-        path: './public/js',
-        filename: 'app.min.js'
-    },
-    module: {
-        loaders: [
-            { test: /\.js$/, loader: 'jsx-loader' }
-        ]
+var React = require('react');
+
+// SomeComponent component
+var SomeComponent = React.createClass({
+
+    render: function () {
+        return (
+            <div>{this.props.text}</div>
+        )
     }
+});
+
+module.exports = {
+    id: 'some_component',
+    component: SomeComponent
 };

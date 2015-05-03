@@ -14,7 +14,7 @@ var Header = React.createClass({
 
     render: function() {
         return (
-            <div>Header</div>
+            <div>{this.props.__('app.name')}</div>
         )
     }
 });

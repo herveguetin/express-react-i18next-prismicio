@@ -12,9 +12,19 @@ var React = require('react');
 // Footer component
 var Footer = React.createClass({
 
-    render: function() {
+    getInitialState: function () {
+        return {};
+    },
+
+    componentDidMount: function () {
+        this.setState({
+            footerTitle: this.props.__('page.copyright')
+        })
+    },
+
+    render: function () {
         return (
-            <div>Footer</div>
+            <div>{this.state.footerTitle}</div>
         )
     }
 });

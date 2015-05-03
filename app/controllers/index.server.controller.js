@@ -7,11 +7,20 @@
  * @copyright Copyright (c) 2015 Hervé Guétin (http://www.herveguetin.com)
  */
 
-var Controller = require('./core.server.controller');
-
 exports.render = function (req, res) {
 
-    Controller.render(req, res, 'index', {
-        title: 'Hello World view'
+    // Require the core controller
+    var Controller = require('./core.server.controller')(req, res);
+
+    // Add some react component
+    Controller.addReactComponents({
+        require: 'some/component',
+        props: {
+            text: 'Component text'
+        }
+    })
+
+    Controller.render('index', {
+        title: 'Page title'
     });
 };

@@ -2,7 +2,7 @@
   "name": "Blog",
   "version": "0.1.0",
   "description": "Hervé Guétin's blog",
-  "main": "index.js",
+  "main": "server.js",
   "author": "Hervé Guétin",
   "repository": {
     "type": "git",
@@ -13,6 +13,8 @@
     "express": "^4.12.3",
     "express-handlebars": "^2.0.1",
     "i18next": "^1.7.10",
+    "i18next-client": "^1.8.2",
+    "i18next-resource-store-loader": "0.0.2",
     "jsx-loader": "^0.13.2",
     "lodash": "^3.8.0",
     "node-jsx": "^0.13.3",

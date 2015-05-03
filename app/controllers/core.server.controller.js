@@ -11,11 +11,28 @@ var ReactFactory = require('../models/reactComponentFactory.model'),
     _ = require('lodash');
 
 /**
+ * Express req & res objects
+ */
+var req,
+    res;
+
+/**
  * All react components for a controller
  *
  * @type {Array}
  */
 var reactComponents = [];
+
+/**
+ * Set Express req & res
+ *
+ * @param req
+ * @param res
+ */
+var setReqRes = function (eReq, eRes) {
+    req = eReq;
+    res = eRes;
+};
 
 /**
  * Retrieve react component
@@ -33,6 +50,12 @@ var getReactComponents = function () {
  * @private
  */
 var _addReactComponent = function (componentConfig) {
+
+    // Add translation to component
+    if (!componentConfig.props) {
+        componentConfig.props = {};
+    }
+    componentConfig.props.__ = req.i18n.t;
 
     var component = ReactFactory(componentConfig);
 
@@ -62,6 +85,20 @@ var addReactComponents = function (components) {
 };
 
 /**
+ * Add common components
+ */
+var addCommonReactComponents = function () {
+    addReactComponents([
+        {
+            require: 'page/header'
+        },
+        {
+            require: 'page/footer'
+        }
+    ])
+};
+
+/**
  * Render wrapper including react components
  *
  * @param req
@@ -69,7 +106,10 @@ var addReactComponents = function (components) {
  * @param view
  * @param data
  */
-var render = function (req, res, view, data) {
+var render = function (view, data) {
+
+    // Add common react components
+    addCommonReactComponents();
 
     // Create info for react components
     var allProps = {};
@@ -79,26 +119,21 @@ var render = function (req, res, view, data) {
         allProps[reactComponent.id] = reactComponent.props;
     });
     data.react = components;
-    data.react._allProps = JSON.stringify(allProps);
+    data.react._props = JSON.stringify(allProps);
 
     // Render for real
     res.render(view, data);
 };
 
-/**
- * Add common components
- */
-addReactComponents([
-    {
-        require: 'page/header'
-    },
-    {
-        require: 'page/footer'
-    }
-]);
+module.exports = function (req, res) {
 
-module.exports = {
-    getReactComponents: getReactComponents,
-    addReactComponents: addReactComponents,
-    render: render
-}
+    setReqRes(req, res);
+
+    var module = {
+        getReactComponents: getReactComponents,
+        addReactComponents: addReactComponents,
+        render: render
+    };
+
+    return module;
+};

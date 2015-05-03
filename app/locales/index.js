@@ -7,15 +7,4 @@
  * @copyright Copyright (c) 2015 Hervé Guétin (http://www.herveguetin.com)
  */
 
-module.exports = {
-    entry: ['./client.js'],
-    output: {
-        path: './public/js',
-        filename: 'app.min.js'
-    },
-    module: {
-        loaders: [
-            { test: /\.js$/, loader: 'jsx-loader' }
-        ]
-    }
-};
+// Empty file, it is just needed to point the webpack's i18next-resource-store-loader to the locales root directory.
