@@ -4,6 +4,10 @@
   "description": "Hervé Guétin's blog",
   "main": "index.js",
   "author": "Hervé Guétin",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/herveguetin/express-react-i18next-prismicio"
+  },
   "dependencies": {
     "compression": "^1.4.3",
     "express": "^4.12.3",
